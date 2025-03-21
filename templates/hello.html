@@ -1,3 +1,27 @@
-<!doctype html>
-<title>CryptoPython</title>
-<h1>Bienvue dans votre atelier CryptoPython !</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CryptoPython</title>
+</head>
+<body>
+    <h1>Bienvenue sur votre API CryptoPython</h1>
+
+    <h2>Choisissez un exercice :</h2>
+
+    <ul>
+        <li>
+            <strong>Exercice 1 :</strong>
+            <a href="/encrypt/test">/encrypt/&lt;valeur&gt;</a> → chiffrement avec clé automatique<br>
+            <a href="/decrypt/collez-ici-votre-token">/decrypt/&lt;token&gt;</a> → déchiffrement avec même clé
+        </li>
+        <br>
+        <li>
+            <strong>Exercice 2 :</strong>
+            <a href="/encrypt/VOTRE_CLE_PERSONNELLE/test">/encrypt/&lt;cle&gt;/&lt;valeur&gt;</a> → chiffrement avec clé fournie<br>
+            <a href="/decrypt/VOTRE_CLE_PERSONNELLE/token">/decrypt/&lt;cle&gt;/&lt;token&gt;</a> → déchiffrement avec la même clé
+        </li>
+    </ul>
+
+    <p style="color:gray;">Remplacez les valeurs dans l’URL pour tester.</p>
+</body>
+</html>
