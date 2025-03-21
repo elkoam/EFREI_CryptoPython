@@ -2,6 +2,26 @@
 <html>
 <head>
     <title>CryptoPython</title>
+    <script>
+        function genererCle() {
+            fetch('/generate_key')
+                .then(response => response.text())
+                .then(data => {
+                    const key = data.replace("Votre clé Fernet : ", "");
+                    document.getElementById("cle").textContent = key;
+                    document.getElementById("cle_brute").value = key;
+                    document.getElementById("bloc-cle").style.display = 'block';
+                });
+        }
+
+        function copierCle() {
+            const input = document.getElementById("cle_brute");
+            input.select();
+            input.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("Clé copiée !");
+        }
+    </script>
 </head>
 <body>
     <h1>Bienvenue sur votre API CryptoPython</h1>
@@ -10,18 +30,29 @@
 
     <ul>
         <li>
-            <strong>Exercice 1 :</strong>
-            <a href="/encrypt/test">/encrypt/&lt;valeur&gt;</a> → chiffrement avec clé automatique<br>
-            <a href="/decrypt/collez-ici-votre-token">/decrypt/&lt;token&gt;</a> → déchiffrement avec même clé
+            <strong>Exercice 1 :</strong><br>
+            <a href="/encrypt/test">/encrypt/&lt;valeur&gt;</a><br>
+            <a href="/decrypt/collez-ici-votre-token">/decrypt/&lt;token&gt;</a>
         </li>
         <br>
         <li>
-            <strong>Exercice 2 :</strong>
-            <a href="/encrypt/VOTRE_CLE_PERSONNELLE/test">/encrypt/&lt;cle&gt;/&lt;valeur&gt;</a> → chiffrement avec clé fournie<br>
-            <a href="/decrypt/VOTRE_CLE_PERSONNELLE/token">/decrypt/&lt;cle&gt;/&lt;token&gt;</a> → déchiffrement avec la même clé
+            <strong>Exercice 2 :</strong><br>
+            <a href="/encrypt/VOTRE_CLE_PERSONNELLE/test">/encrypt/&lt;cle&gt;/&lt;valeur&gt;</a><br>
+            <a href="/decrypt/VOTRE_CLE_PERSONNELLE/token">/decrypt/&lt;cle&gt;/&lt;token&gt;</a>
         </li>
     </ul>
 
-    <p style="color:gray;">Remplacez les valeurs dans l’URL pour tester.</p>  
+    <hr>
+
+    <h2>🔐 Générer une clé Fernet</h2>
+    <button onclick="genererCle()">Générer une clé</button>
+
+    <div id="bloc-cle" style="display:none; margin-top:10px;">
+        <p><strong>Votre clé :</strong> <span id="cle" style="color:blue;"></span></p>
+        <input type="text" id="cle_brute" readonly style="width:100%;"><br><br>
+        <button onclick="copierCle()">📋 Copier la clé</button>
+    </div>
+
+    <p style="color:gray; margin-top:30px;">Remplacez les valeurs dans l’URL pour tester.</p>
 </body>
 </html>
